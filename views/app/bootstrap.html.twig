@@ -1,0 +1,13 @@
+<div id=content></div>
+
+<script type="text/javascript" src="/js/app.js"></script>
+<script type="text/javascript" src="/js/Message.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript">
+;$(function(){
+    // Start the real Backbone app here
+    window.app = new App();
+    window.app.messages.refresh({{messages}});
+    Backbone.history.start();
+});
+</script>

@@ -28,6 +28,7 @@ use lithium\action\Dispatcher;
  * and the rest as `production`
  */
 Environment::is(function($request) {
+    return 'development';
     $host = $request->env('HTTP_HOST');
     if (strpos($host, "dev.") !== false)
         return 'development';

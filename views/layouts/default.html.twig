@@ -2,25 +2,48 @@
 <html>
 <head>
     <title>{{this.title}}</title>
-    {{ this.charset }}
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 
     <script type="text/javascript" src="/js/underscore-min.js"></script>
     <script type="text/javascript" src="/js/backbone-min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="/css/global.css" />
-    {% for script in this.scripts %}
-    {{script}}
-    {% endfor %}
+
+    {% raw %}
+    <script type="text/html" id="tmpl-user-create">
+        <form>
+            <label for=username>Username</label>
+            <input type=text name=username id=username />
+
+            <label for=password>Password</label>
+            <input type=password name=password id=password />
+
+            <button type=submit>Create</button>
+        </form>
+    </script>
+
+    <script type="text/html" id="tmpl-status">
+        <section id=status>
+            <form>
+                <label for=username>Username</label>
+                <input type=text name=username id=username />
+
+                <textarea name=status id=status-text data-modified=0>Whatcha up to?</textarea>
+                <button type=submit>Post</button>
+            </form>
+        </section>
+        {{each messages}}
+        <div>
+            <p>${post}</p>
+            <a href="/#by/${username}">by ${username}</a>
+        </div>
+        {{/each}}
+    </script>
+    {% endraw %}
 </head>
 <body>
-	<div id="wrapper">
-        {{this.content}}
-    </div>
-    <script type="text/javascript">
-        // Start the real Backbone app here
-    </script>
+    {{this.content}}
 </body>
 </html>
